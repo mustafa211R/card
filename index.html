@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحصول على الهوية</title>
+<link href="package/dist/tailwind.css" rel="stylesheet">
+<link href="fonts.css" rel="stylesheet">
+<script defer src="search.js"></script>
+<style>
+/* أنميشن للظهور */
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.modal-show {
+  animation: fadeInScale 0.3s ease forwards;
+}
+</style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+    <h3 class="text-xl font-bold text-blue-700 mb-3">تعليمات استخدام الهوية</h3>
+    <ul class="list-disc pr-6 space-y-2 text-md mb-6">
+        <li>هذه الهوية تثبت أن الطالب مسجل في النظام الإلكتروني وقاعدة بيانات المدرسة.</li>
+        <li>لا يجوز التغيير أو التلاعب في محتوى الهوية.</li>
+        <li>لا تستخدم هذه الهوية خارج المدرسة.</li>
+        <li>يُفضّل تغليف الهوية للمحافظة عليها.</li>
+        <li>هذه الهوية هي مستمسك يستخدم داخل المدرسة فقط.</li>
+        <li>أي تعديل أو خطأ في المعلومات يرجى مراجعة إدارة المدرسة.</li>
+    </ul>
+    <button id="getIdBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">الحصول على الهوية</button>
+</div>
+
+<!-- نافذة منبثقة -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-xl shadow-lg w-full max-w-md relative p-6 modal-show">
+        <!-- زر إلغاء X -->
+        <button id="closeModal" class="absolute top-3 left-3 text-white bg-red-600 hover:bg-red-700 w-8 h-8 flex items-center justify-center rounded-full font-bold">X</button>
+
+        <h3 class="text-lg font-bold text-blue-700 mb-4">الحصول على الهوية</h3>
+
+        <label class="block mb-2 font-semibold">أدخل اسمك:</label>
+        <input type="text" id="studentName" class="w-full border rounded px-3 py-2 mb-4" placeholder="الاسم الكامل">
+
+        <label class="block mb-2 font-semibold">اختر المدرسة:</label>
+        <select id="schoolSelect" class="w-full border rounded px-3 py-2 mb-4">
+            <option value="Zainafs_Al-Zakiyya">ذو النفس الزكية</option>
+            <option value="Ghaleb_Shani">الشهيد الغالب اشنيع</option>
+        </select>
+
+        <button id="downloadBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3">الحصول على الهوية</button>
+
+        <p id="statusMsg" class="mt-4 text-red-600 font-semibold"></p>
+    </div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const getIdBtn = document.getElementById("getIdBtn");
+const closeModal = document.getElementById("closeModal");
+
+getIdBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+});
+
+closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+});
+</script>
+
+</body>
+</html>
